@@ -173,6 +173,8 @@ function getCloseStops(lat, lon)
 
         closeStops[rTag] = rCloseStops;
     }
+    
+    return closeStops;
 }
 
 function getPredictions(rTag, sTag, rdTitle)
