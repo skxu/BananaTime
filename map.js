@@ -88,8 +88,14 @@ var Map  = {
     
   },
   
-  handleNoGeolocation: function(canHandle) {
-    console.log(canHandle);
+  handleNoGeolocation: function(denied) {
+    console.log(denied);
+    if (denied == true) {
+        console.log("Please enable geolocation for this app to work");
+    } else {
+        console.log("Sorry, your browser does not support geolocation. Using default location: Soda Hall");
+    }
+      
     var pos = new google.maps.LatLng(37.8756081,-122.2587463)
     var infowindow = new google.maps.InfoWindow({
           map: Map.map,

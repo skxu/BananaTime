@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script type="text/javascript"
+            API_KEY="AIzaSyDTw5hrRhtlc2v5yOSjxZDK8atDs-kGjh0"
+      src="https://maps.googleapis.com/maps/api/js?key="+API_KEY></script>
+    </script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script type="text/javascript" src="map.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+  </head>
+  <body onload="Map.initialize()">
+    <div id="container">
+    <!--LOGO-->
+    <div id="logo_div">
+    <img id="logo" src="banana.png">
+    </div>
+    <!--MENU-->
+    <div id="menu">
+      <form action="#"><input type="submit" id="optionA" class="menu-option" value="Find nearby buses"></form>
+      <div id="optionB" class="menu-option">Get to point Y</div>
+      <div id="optionC" class="menu-option">Going from point X to point Y</div>
+    </div>
+    <div id="option2" style="visibility:hidden">
+      <div id="map-canvas"></div>
+      <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+      <form class="locator" action="#">
+        <div class="locator__message">can't find your fucking location. try again</div>
+        <input class="locator__search" placeholder="WHERE THE FUCK ARE YOU?" type="text" id="locationsearch">
+        <input type="submit" class="locator__submit" value="find me a fucking bus">
+      </form>
+    </div>
+  </div>
+  </body>
+</html>

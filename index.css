@@ -1,0 +1,90 @@
+html { 
+  height: 100%;
+}
+body { 
+  height: 100%;
+  margin: 0 auto; 
+  padding: 0;
+}
+#map-canvas { 
+  height: 50%; 
+}
+
+#container {
+  height:100%;
+  position: relative;
+  width:100%;
+  background-color:rgba(230,230,230,0.5);
+}
+
+#logo_div {
+  width:100px;
+  position: relative;
+  margin:0px auto;
+}
+
+#logo {
+  position:relative;
+  align-content: center;
+  max-width:100px;
+}
+
+.menu-option {
+  position: relative;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom:20px;
+  border: 1px solid rgb(210,210,210);
+	background-color: rgb(245,240,245);
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.menu-option:hover {
+  cursor:pointer;
+}
+
+#menu {
+  position: relative;
+  margin:0 auto;
+  width: 250px;
+  top: 5%;
+}
+
+#pac-input {
+  position:relative;
+  margin-left:0 auto;
+  margin-right:0 auto;
+  background-color: #fff;
+  padding: 0 11px 0 13px;
+  width: 400px;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  text-overflow: ellipsis;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+  margin-left: -1px;
+  padding-left: 14px;  /* Regular padding-left + 1. */
+  width: 401px;
+}
+
+.pac-container {
+  font-family: Roboto;
+}
+
+.controls {
+  margin-top: 16px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
