@@ -7,6 +7,18 @@ body {
   padding: 0;
 }
 
+#loading_div {
+  position: relative;
+  margin: 0px auto;
+  width:41px;
+
+}
+
+#loading {
+  max-width: 41px;
+  align-content: center;
+}
+
 #locator_container {
   display:none;
   position:relative;

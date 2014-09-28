@@ -1,8 +1,11 @@
 var Map  = {
   
   map: null,
+  currlat: null,
+  currlon: null,
   
   initialize: function() {
+    Control.show("loading_div");
     
     var autoOptions = {
         types: ["geocode"]
@@ -24,6 +27,9 @@ var Map  = {
     if(navigator.geolocation) {
       
       navigator.geolocation.getCurrentPosition(function(position) {
+        
+        getRoutes();
+        Control.hide("loading_div");
         Control.hide("message");
         Control.show("menu");
         var pos = new google.maps.LatLng(position.coords.latitude,
@@ -99,10 +105,12 @@ var Map  = {
     if (denied == true) {
         console.log("User denied geolocation");
         document.getElementById("message").textContent = "Please allow location services";
+        Control.hide("loading_div");
         Control.show("locator_container");
     } else {
         console.log("User not have geolocation");
         document.getElementById("message").textContent = "Sorry, your browser does not support geolocation. Using default location: Soda Hall";
+        Control.hide("loading_div");
         Control.show("locator_container");
     }
       
@@ -114,6 +122,9 @@ var Map  = {
             console.log("manual location:" + address);
             if (status == google.maps.GeocoderStatus.OK) {
               currentlatlng = results[0].geometry.location;
+              Map.currlat = currentlatlng.lat();
+              Map.currlon = currentlatlng.lng();
+              
               var pos = new google.maps.LatLng(currentlatlng.lat(),currentlatlng.lng());
               var infowindow = new google.maps.InfoWindow({
                     map: Map.map,

@@ -16,12 +16,18 @@ Control = {
       case "optionA":
         Control.hide("menu");
         Control.show("map_container","block");
+        console.log(getCloseStops(Map.map.center.lat(),Map.map.center.lng()));
+        var currCenter = Map.map.getCenter();
         google.maps.event.trigger(Map.map, 'resize');
+        Map.map.setCenter(currCenter);
+        
         break;
       case "optionB":
         Control.hide("menu");
-        Control.show("map_container","block");
+        //Control.show("map_container","block");
+        var currCenter = Map.map.getCenter();
         google.maps.event.trigger(Map.map, 'resize');
+        Map.map.setCenter(currCenter);
         break;
     }
   }

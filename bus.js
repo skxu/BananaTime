@@ -19,6 +19,7 @@ function getRoutes() {
             // Populate route tags and titles
             routeTags.push(tag);
         }
+        getStops();
     }
     xmlhttp.send();
 }
