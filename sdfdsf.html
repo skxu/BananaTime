@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&libraries=places,sensor=true&key=AIzaSyDTw5hrRhtlc2v5yOSjxZDK8atDs-kGjh0"></script>
+    <script type="text/javascript" src="map.js"></script>
+    <script type="text/javascript" src="control.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="bus.js"></script>
+  </head>
+    <script>
+        var directionsService = new google.maps.DirectionsService();
+        var firstStops = [];
+
+        function getBusRoutes(o, d)
+        {
+            var request = {
+                origin: o,
+                destination: d,
+                provideRouteAlternatives: true,
+                travelMode: google.maps.TravelMode.TRANSIT
+            };
+            directionsService.route(request, function(response, status) {
+                r = response.routes;
+                for (var i=0;i<r.length;i++)
+                {
+                    var l = r[i].legs[0];
+                    var getOn = l.start_location;
+                    var getOff = l.end_location;
+                    var steps = l.steps;
+                    
+                    for (var k=0;k<steps.length;k++)
+                    {
+                        var loc = steps[k].start_location;
+                        var transit = steps[k].transit;
+                        if (transit != undefined)
+                        {
+                            var line = transit.line.short_name;
+                            if (routes[line] != undefined && routeInfos[line] != undefined)
+                            {
+                                var routeDirections = routes[line];
+                                var rI = routeInfos[line];
+                                
+                                for (var b=0;b<routeDirections.length;b++)
+                                {
+                                    var routeStops = routeDirections[b].stopTags;
+                                    for (var j=0;j<routeStops.length;j++)
+                                    {
+                                        var stopInfo = rI[routeStops[j]];
+
+                                        var R = 3958.75; //miles?
+                                        var toRad = Math.PI / 180;
+
+                                        var lat = loc.lat();
+                                        var lon = loc.lng();
+                                        var sLat = stopInfo.lat;
+                                        var sLon = stopInfo.lon;
+                                        console.log(lat, lon, sLat, sLon);
+
+                                        // haversine
+                                        var s1 = sLat * toRad;
+                                        var s2 = lat * toRad;
+                                        var ds = (s2-s1) / 2;
+                                        var dl = (sLon-lon) * toRad / 2;
+
+                                        var sds = Math.sin(ds);
+                                        var sdl = Math.sin(dl);
+
+                                        var a = sds * sds + Math.cos(s1) * Math.cos(s2) * sdl * sdl;
+
+                                        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+                                        var d = R*c;
+                                        console.log(d);
+
+                                        if (d < 0.003)
+                                        {
+                                            firstStops.push(r[i]);
+                                            firstStops.push(stopInfo);
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+            });
+        }
+        getRoutes();
+        getCloseStops(37.8445499, -122.25169);
+        getBusRoutes(new google.maps.LatLng(37.8445499, -122.25169), new google.maps.LatLng(37.8677199, -122.2592));
+        
+    </script>
+</html>
