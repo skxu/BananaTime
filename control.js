@@ -3,20 +3,26 @@ Control = {
     document.getElementById(id).style.display = "none";
   },
   
-  show: function(id) {
-    document.getElementById(id).style.display = "block";
+  show: function(id, type) {
+    if (type !== undefined) {
+      document.getElementById(id).style.display = type;
+    } else {
+      document.getElementById(id).style.display = "block";
+    }
   },
   
   process: function(id) {
     switch(id) {
       case "optionA":
-        this.hide("menu");
-        this.show("map-canvas");
-        console.log(getCloseStops(lat, lon));
+        Control.hide("menu");
+        Control.show("map_container","block");
+        google.maps.event.trigger(Map.map, 'resize');
         break;
       case "optionB":
-        this.hide("menu");
-        this.show("map-canvas");
+        Control.hide("menu");
+        Control.show("map_container","block");
+        google.maps.event.trigger(Map.map, 'resize');
+        break;
     }
   }
 

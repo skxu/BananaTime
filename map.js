@@ -1,4 +1,5 @@
 var Map  = {
+  
   map: null,
   
   initialize: function() {
@@ -7,19 +8,24 @@ var Map  = {
         types: ["geocode"]
     },
     autoInput = document.getElementById("locationsearch");
+    locationInput = document.getElementById("locator");
     autocomplete = new google.maps.places.Autocomplete(autoInput, autoOptions);
+    autocomplete2 = new google.maps.places.Autocomplete(locationInput, autoOptions);
     
     
      var mapOptions = {
-      zoom: 18,
+      zoom: 17,
     };
 
     this.map = new google.maps.Map(document.getElementById('map-canvas'),
         mapOptions);
-    
+    document.getElementById("map_container").style.display = "none";
     //If we support geolocation
     if(navigator.geolocation) {
+      
       navigator.geolocation.getCurrentPosition(function(position) {
+        Control.hide("message");
+        Control.show("menu");
         var pos = new google.maps.LatLng(position.coords.latitude,
                                          position.coords.longitude);
 
@@ -93,21 +99,39 @@ var Map  = {
     if (denied == true) {
         console.log("User denied geolocation");
         document.getElementById("message").textContent = "Please allow location services";
+        Control.show("locator_container");
     } else {
         console.log("User not have geolocation");
         document.getElementById("message").textContent = "Sorry, your browser does not support geolocation. Using default location: Soda Hall";
+        Control.show("locator_container");
     }
       
-    var pos = new google.maps.LatLng(37.8756081,-122.2587463);
-    var infowindow = new google.maps.InfoWindow({
-          map: Map.map,
-          position: pos,
-          content: 'Location hardcoded.'
+    document.getElementById("uselocation").addEventListener("click", function() {
+      var address = document.getElementById("locator").value;
+      geocoder = new google.maps.Geocoder;
+      var currentlatlng;
+      geocoder.geocode({address: address}, function(results, status) {
+            console.log("manual location:" + address);
+            if (status == google.maps.GeocoderStatus.OK) {
+              currentlatlng = results[0].geometry.location;
+              var pos = new google.maps.LatLng(currentlatlng.lat(),currentlatlng.lng());
+              var infowindow = new google.maps.InfoWindow({
+                    map: Map.map,
+                    position: pos,
+                    content: "You're somewhere here",
+                  });
+              Map.map.setCenter(pos);
+              Control.hide("message");
+              Control.show("menu");
+            } else {
+              console.log("Geocode was not successful for the following reason: " + status);
+              document.getElementById("message").textContent = "Couldn't fucking find you, try again";
+            }
+      
+      
         });
-    
-    Map.map.setCenter(pos);
-    Control.hide("message");
-    Control.show("menu");
+
+    });
   }
   
 }

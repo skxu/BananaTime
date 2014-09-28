@@ -19,11 +19,16 @@
     <!--PLEASE TURN ON GEOLOCATION-->
     <div id="message">
       <p>Please allow location services</p>
-      <p>Or select location</p>
+      
     </div>
-    <form action="#">
-      <input type="text" id="locator">
-      <input type="submit" id="no" class="button" value="Use Location"></form>
+      
+    <div id="locator_container">
+      <p style="text-align:center">Or select location</p>
+      <form action="#">
+        <input type="text" id="locator">
+        <input type="submit" id="uselocation" class="button" value="Use Location">
+      </form>
+    </div>
     <!--MENU-->
     <div id="menu" style="display:none">
       <form action="#"><input type="submit" id="optionA" class="menu-option" value="Find nearby buses"></form>
@@ -31,7 +36,7 @@
       <form action="#"><input type="submit" id="optionC" class="menu-option" value="Going from point X to point Y"></form>
     </div>
     <!--MAP-->
-    <div id="map_container" style="display:none">
+    <div id="map_container">
       <div id="map-canvas"></div>
     </div>
       
