@@ -6,8 +6,15 @@ body {
   margin: 0 auto; 
   padding: 0;
 }
+
+#map_container {
+  height: 100%;
+  position: relative;
+}
+
 #map-canvas { 
-  height: 50%; 
+  position: relative;
+  height: 30%; 
 }
 
 #container {
