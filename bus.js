@@ -88,6 +88,7 @@ function getStops() {
             }
 
             routes[routeTag] = rDirs;
+        
         }
         xmlhttp.send();
     }
@@ -190,8 +191,7 @@ function getCloseStops(lat, lon)
                 }*/
             }
         }
-
-        closeStops[rTag] = rCloseStops;
+        if (rCloseStops.length > 0)  closeStops[rTag] = rCloseStops;
     }
     
     return closeStops;

@@ -7,6 +7,18 @@ var Map  = {
   initialize: function() {
     Control.show("loading_div");
     
+    document.getElementById("optionA").addEventListener("click", function(e) {
+      Control.process("optionA"), e.preventDefault()
+    });
+  
+    document.getElementById("optionB").addEventListener("click", function(e) {
+      Control.process("optionB"), e.preventDefault()
+    });
+  
+    document.getElementById("optionC").addEventListener("click", function(e) {
+      Control.process("optionC"), e.preventDefault()
+    });
+    
     var autoOptions = {
         types: ["geocode"]
     },
@@ -17,7 +29,7 @@ var Map  = {
     
     
      var mapOptions = {
-      zoom: 17,
+      zoom: 15,
     };
 
     this.map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -34,7 +46,8 @@ var Map  = {
         Control.show("menu");
         var pos = new google.maps.LatLng(position.coords.latitude,
                                          position.coords.longitude);
-
+        Map.currlat = position.coords.latitude;
+        Map.currlon = position.coords.longitude;
         var infowindow = new google.maps.InfoWindow({
           map: Map.map,
           position: pos,
@@ -54,12 +67,11 @@ var Map  = {
     var markers = [];
     var input = /** @type {HTMLInputElement} */(
       document.getElementById('pac-input'));
-    Map.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-    var searchBox = new google.maps.places.SearchBox(
-    /** @type {HTMLInputElement} */(input));
+   // Map.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+   // var searchBox = new google.maps.places.SearchBox((input));
     
     
-    
+    /*
     google.maps.event.addListener(searchBox, 'places_changed', function() {
       var places = searchBox.getPlaces();
 
@@ -97,6 +109,7 @@ var Map  = {
 
       map.fitBounds(bounds);
     });
+    */
     
   },
   
