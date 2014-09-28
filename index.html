@@ -6,6 +6,7 @@
     <script type="text/javascript" src="map.js"></script>
     <script type="text/javascript" src="control.js"></script>
     <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="bus.js"></script>
   </head>
   
   
@@ -15,14 +16,22 @@
     <div id="logo_div">
     <img id="logo" src="banana.png">
     </div>
+    <!--PLEASE TURN ON GEOLOCATION-->
+    <div id="message">
+      <p>Please allow location services</p>
+      <p>Or select location</p>
+    </div>
+    <form action="#">
+      <input type="text" id="locator">
+      <input type="submit" id="no" class="button" value="Use Location"></form>
     <!--MENU-->
-    <div id="menu">
+    <div id="menu" style="display:none">
       <form action="#"><input type="submit" id="optionA" class="menu-option" value="Find nearby buses"></form>
       <form action="#"><input type="submit" id="optionB" class="menu-option" value="Get to point Y"></form>
       <form action="#"><input type="submit" id="optionC" class="menu-option" value="Going from point X to point Y"></form>
     </div>
     <!--MAP-->
-    <div id="map_container">
+    <div id="map_container" style="display:none">
       <div id="map-canvas"></div>
     </div>
       
@@ -31,7 +40,7 @@
       
       
     </div>
-    <div id="option2">
+    <div id="option2" style="display:none">
       
       <input id="pac-input" class="controls" type="text" placeholder="Search Box">
       <form class="locator" action="#">

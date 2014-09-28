@@ -91,12 +91,14 @@ var Map  = {
   handleNoGeolocation: function(denied) {
     console.log(denied);
     if (denied == true) {
-        console.log("Please enable geolocation for this app to work");
+        console.log("User denied geolocation");
+        document.getElementById("message").textContent = "Please allow location services";
     } else {
-        console.log("Sorry, your browser does not support geolocation. Using default location: Soda Hall");
+        console.log("User not have geolocation");
+        document.getElementById("message").textContent = "Sorry, your browser does not support geolocation. Using default location: Soda Hall";
     }
       
-    var pos = new google.maps.LatLng(37.8756081,-122.2587463)
+    var pos = new google.maps.LatLng(37.8756081,-122.2587463);
     var infowindow = new google.maps.InfoWindow({
           map: Map.map,
           position: pos,
@@ -104,6 +106,8 @@ var Map  = {
         });
     
     Map.map.setCenter(pos);
+    Control.hide("message");
+    Control.show("menu");
   }
   
 }
