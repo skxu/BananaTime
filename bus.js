@@ -92,6 +92,25 @@ function getStops() {
     }
 }
 
+/*
+*  Provide lat and lon to receive object containing all of the closest
+* stops, one for each unique route-direction pair, and predictions.  Example usage:
+*
+*  predictions = getCloseStops(lat, lon);
+*  for (var i=0;i<routeTags.length;i++)
+*  {
+*    stops = predictions[i];
+*    for (var j=0;j<stops.length;j++)
+*    {
+*      predictionInfo = stops[j];
+*      intersection = predictionInfo.info.title;
+*      time = predictionInfo.predictions[0].seconds;
+*      ...
+*    }
+*  }
+*
+*  getRoutes() and getStops() must be called first.
+*/
 function getCloseStops(lat, lon)
 {
     var closeStops = {};
