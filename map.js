@@ -48,11 +48,7 @@ var Map  = {
                                          position.coords.longitude);
         Map.currlat = position.coords.latitude;
         Map.currlon = position.coords.longitude;
-        var infowindow = new google.maps.InfoWindow({
-          map: Map.map,
-          position: pos,
-          content: 'Location found using HTML5.'
-        });
+       
       console.log(position.coords.latitude);
       console.log(position.coords.longitude);
       Map.map.setCenter(pos);
@@ -138,12 +134,7 @@ var Map  = {
               Map.currlat = currentlatlng.lat();
               Map.currlon = currentlatlng.lng();
               
-              var pos = new google.maps.LatLng(currentlatlng.lat(),currentlatlng.lng());
-              var infowindow = new google.maps.InfoWindow({
-                    map: Map.map,
-                    position: pos,
-                    content: "You're somewhere here",
-                  });
+             
               Map.map.setCenter(pos);
               Control.hide("message");
               Control.show("menu");

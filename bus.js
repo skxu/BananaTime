@@ -1,6 +1,7 @@
 var routeTags = [];
 var routes = {};
 var routeInfos = {};
+var tagToDirection = {};
 
 // Get the List of buses of actransit, place it in routeTags
 function getRoutes() {
@@ -73,6 +74,7 @@ function getStops() {
                 dirObj["title"] = d.getAttribute("title");
                 dirObj["name"] = d.getAttribute("name");
                 dirObj["useForUI"] = d.getAttribute("useForUI");
+                tagToDirection[d.getAttribute("tag")] = [d.getAttribute("title"),d.getAttribute("name")];
 
                 var dStopTags = [];
 

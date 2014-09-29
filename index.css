@@ -8,6 +8,14 @@ body {
   padding: 0;
 }
 
+.bus-stop {
+  border: 3px solid rgb(210,210,210);
+  width: 50%;
+  margin: 0px auto;
+  margin-bottom:5px;
+  margin-top:5px;
+}
+
 #loading_div {
   position: relative;
   margin: 0px auto;
@@ -78,7 +86,7 @@ body {
   padding-bottom: 15px;
   margin-bottom:20px;
   border: 1px solid rgb(210,210,210);
-	background-color: rgb(245,240,245);
+  background-color: rgb(245,240,245);
   font-family: Arial;
   font-size: 15px;
   font-weight: 300;
