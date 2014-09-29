@@ -133,7 +133,7 @@ var Map  = {
               currentlatlng = results[0].geometry.location;
               Map.currlat = currentlatlng.lat();
               Map.currlon = currentlatlng.lng();
-              
+              var pos = new google.maps.LatLng(Map.currlat, Map.currlon);
              
               Map.map.setCenter(pos);
               Control.hide("message");
